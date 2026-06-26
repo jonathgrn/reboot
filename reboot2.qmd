@@ -1,0 +1,93 @@
+---
+title: "Progressive Momentum?"
+subtitle: "In their own districts, progressive House Democrats consistently underperformed the Democrats running above them in 2024."
+author: "Jonathan Hagiarian"
+date: "26 June 2026"
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+    number-sections: false
+    smooth-scroll: true
+    fontsize: 1.1em
+    linestretch: 1.7
+    max-width: 800px
+    mainfont: "Courier"
+    css: styles.css
+---
+---
+---
+
+One of the the most persistent claims in progressive, DSA-adjacent political circles is that left-wing candidates are electoral assets; that their energy, their bases and their brand drive turnout and ticket-splitting in ways that exceed what their districts’ pre-existing partisanship would predict. The argument has been made repeatedly since 2018, when the “Squad” arrived in Congress, and has been made recurrently since then, especially as the Democratic Party was left reeling in the wake of the 2024 election. Recently, after several DSA candidates won primaries in New York, it has once more re-emerged.
+
+There is no way to accurately measure that claim — in both ways. But there are ways to quantify it. The 2024 general election data is worth examining. Using precinct-level results aggregated at the congressional district level, it is possible to compare how progressive House members performed against the Democratic candidates running above them on the same ballot; candidates who faced the same electorate, on the same day, under the same conditions. And crucially, it is possible to run the same analysis on a matched sample of establishment-affiliated Democrats, producing a direct comparison between the two groups. The findings are uncomfortable for the progressive electoral thesis: in five of six districts examined, the progressive House member was the weakest Democratic performer on the ballot. In the establishment Democrat control group, every single member outran their presidential baseline.
+
+First, a word on data and methodology. This analysis examines whether prominent progressive House Democrats generated meaningful electoral advantages in their own districts in the 2024 general election. Specifically, it analyzes whether they outperformed the Democratic candidates running above them on the same ballot. This matters at a time where the claim that left-wing candidates drive exceptional turnout and ticket-splitting in their districts seems to be gaining momentum.
+
+Two groups of six House Democrats were selected for analysis. The first comprises members affiliated with or adjacent to the Squad and anti-establishment wing of the party: Alexandria Ocasio-Cortez (NY-14), Greg Casar (TX-35), Mark Pocan (WI-02), Ro Khanna (CA-17), Pramila Jayapal (WA-07) and Ilhan Omar (MN-05). Selection was based on prominence within the progressive wing of the Democratic Party, especially proximity to the so-called Squad and the DSA, and availability of precinct-level data.
+
+The second comprises establishment Democrats in comparably safe urban or majority-minority seats with no Squad affiliation: Ritchie Torres (NY-15), Steve Cohen (TN-09), Gwen Moore (WI-04), Jim McGovern (MA-02), Lois Frankel (FL-22) and Jim Clyburn (SC-06).
+
+Precinct-level vote data was drawn from two sources: presidential and Senate results were obtained from the MIT Election Data and Science Lab’s national precinct-level general election dataset. Congressional district boundaries and precinct-level vote totals, including House, Senate and presidential results, were obtained from Redistricting Data Hub, which publishes state-level shapefiles and GeoJSON files compiled from official state election returns.
+
+Data processing and analysis was conducted in R, using the tidyverse package suite for data cleaning and aggregation, and the sf package for reading and handling geospatial shapefiles. For each state, precincts were matched to congressional districts using the CONG_DIST field present in Redistricting Data Hub files, allowing vote totals to be aggregated at the district level.
+
+Two baselines are used throughout: the presidential baseline, i.e. Kamala Harris’s two-party share within the district, measures underlying district partisanship independent of candidate quality. The Senate baseline, i.e., the Democratic Senate candidate’s two-party share within the district, measures how the progressive House member performed relative to the Democrat sharing the top of the ballot. Neither baseline is sufficient alone: the presidential baseline does not account for Senate candidate variation, while the Senate baseline introduces noise from differences in incumbency, name recognition and campaign strategy across states.
+
+Two members in the control group (Clyburn and Frankel) present partial Senate baseline limitations: Tim Scott ran unopposed in South Carolina in 2024, eliminating a Senate comparator for Clyburn, while FL-22’s competitive nature makes Frankel a weaker safe-seat comparison than the rest of the control group.
+
+Code was written with assistance from Claude AI, which supported the construction and debugging of R scripts for shapefile analysis, precinct filtering and vote aggregation. All analytical decisions, interpretations and conclusions are mine.
+
+Lastly, two prominent Squad members are absent from this analysis. Ayanna Pressley ran unopposed in 2024, rendering her vote share incomparable to districts with contested races. Rashida Tlaib is similarly absent as precinct-level data sufficient to isolate her congressional district was not available from Redistricting Data Hub at the time of writing. Given her prominence within the Squad, her exclusion is a limitation.
+
+The results from the first group are summarized in the following table:
+
+## Results
+
+**Squad-affiliated members:**
+
+| Member | District | Harris % | Senate % | House % | vs Harris | vs Senate |
+|--------|----------|----------|----------|---------|-----------|-----------|
+| AOC | NY-14 | 66.2% | 70.0% (Gillibrand) | 69.2% | +3.0 | -0.8 |
+| Casar | TX-35 | 67.1% | 70.4% (Allred) | 67.4% | +0.3 | -3.0 |
+| Pocan | WI-02 | 70.4% | 71.0% (Baldwin) | 70.1% | -0.3 | -0.9 |
+| Khanna | CA-17 | 69.8% | 68.4% (Schiff) | 67.7% | -2.1 | -0.7 |
+| Jayapal | WA-07 | 88.8% | 86.6% (Cantwell) | 84.2% | -4.6 | -2.4 |
+| Omar | MN-05 | 81.8% | 84.6% (Klobuchar) | 75.2% | -6.6 | -9.4 |
+
+**Establishment Democrat control group:**
+
+| Member | District | Harris % | Senate % | House % | vs Harris | vs Senate |
+|--------|----------|----------|----------|---------|-----------|-----------|
+| Torres | NY-15 | 74.4% | 78.0% (Gillibrand) | 78.4% | +4.0 | +0.4 |
+| Cohen | TN-09 | 67.0% | 65.4% (Johnson) | 73.5% | +6.5 | +8.1 |
+| Moore | WI-04 | 76.2% | 77.2% (Baldwin) | 76.9% | +0.7 | -0.3 |
+| McGovern | MA-02 | 62.1% | 58.9% (Warren) | 68.8% | +6.7 | +9.9 |
+| Frankel | FL-22 | 52.8% | 53.4% (Mucarsel-Powell) | 55.0% | +2.2 | +1.6 |
+| Clyburn | SC-06 | 61.2% | N/A | 61.8% | +0.6 | N/A |
+
+The results from the second group are summarized in the following table:
+
+Based on this data, every establishment Democrat in the control group outperformed the Harris presidential baseline in their district, by margins ranging from 0.6 points (Clyburn) to 6.7 points (McGovern). On the Senate baseline, four of the five members with available data ran ahead of or level with their state’s Senate candidate. In the Squad sample, five of six members ran behind or level with Harris and every single member ran behind their state’s Senate candidate.
+
+Squad-affiliated House members did not generate the electoral lift that progressive electoral theory predicts. In five of six districts, they were the weakest Democratic performer on the ballot. Sampled Establishment Democrats in comparable seats showed the opposite pattern, systematically outrunning both the presidential baseline and, in most cases, the Senate candidate above them.
+
+AOC is the only member in the sample who outran Harris and came close to matching a long-serving Senate incumbent. Her 69.2% in NY-14 exceeded Harris’s 66.2% by 3.0 points, and her 0.8-point gap behind Gillibrand is negligible. Her result suggests genuine candidate-specific electoral strength independent of district partisanship. She is the exception that defines the rule.
+
+Ilhan Omar’s result is undeniably the most dramatic. She ran 6.6 points behind Harris and 9.4 points behind Klobuchar in a district the Senate candidate carried with 84.6%. In a district this safely Democratic, a nearly 10-point gap between the Senate and House Democratic candidates is a significant finding.
+
+Casar, Pocan, Khanna and Jayapal all underperformed their Senate baselines by between 0.7 and 3.0 points and all underperformed or barely matched Harris. None generated meaningful overperformance. In particular, Khanna’s underperformance of both Harris and Schiff in a high-turnout, heavily educated Silicon Valley district is thought-provoking.
+
+The establishment Democrat numbers sharpen the Squad findings considerably. Steve Cohen ran 6.5 points ahead of Harris in TN-09. McGovern ran 6.7 points ahead of Harris in MA-02. Ritchie Torres ran 4.0 points ahead of Harris in NY-15. The contrast between Torres (+4.0) and his Bronx neighbor AOC (+3.0) is particularly striking the explicitly anti-Squad establishment Democrat outperformed his presidential baseline by more than the Squad’s strongest performer. He also outperformed AOC in the Senate baseline by a point.
+
+The findings are arguably more significant given the electoral context in which they occurred. In a cycle where Harris underperformed Biden by roughly 8 points nationally, House incumbents would typically be expected to outrun the top of the ticket; the establishment group did that; the Squad group did not. In a cycle that should have widened the gap between presidential and House Democratic performance in incumbents’ favor, Squad members largely failed to perform well enough while their establishment counterparts did so consistently.
+
+This analysis cannot establish that progressive ideology caused underperformance. It is possible that primary competitiveness, candidate-specific factors and local political dynamics explained part of the gap.
+
+What the data does establish is that the frequently made claim about progressive electoral strength is not supported by the 2024 precinct-level evidence. If anything, the evidence points in the opposite direction: in 2024, being an establishment Democrat in a safe seat appears to have been a more reliable predictor of ballot overperformance than being a Squad member.
+
+The progressive electoral thesis has always rested on a confusion: winning a safely blue seat is not the same as outperforming it. In 2024, the precinct-level data makes that distinction visible. Establishment Democrats in safe seats generated incumbency advantage; most Squad members, in the same conditions, did not.
+
+The current cycle has seen a wave of DSA-backed and anti-establishment candidates perform strongly in Democratic primaries; Mamdani, Platner, el-Sayed, the three congressional candidates in New York City. It is tempting to read primary success as evidence of broader electoral strength. The 2024 general election data is a reality check: primary electorates are small, motivated and ideologically unrepresentative of the general electorate. It is extremely well-documented that primaries often push the cursor to the extremes, across parties. Winning those primaries is not proof of crossover appeal. The members examined in this analysis were themselves primary winners, often showcased as evidence of a rising progressive electoral coalition. In November, most of them underperformed the Democrats running above them on the same ballot, in the same districts, on the same day. A candidate who electrifies a primary base and a candidate who generates votes beyond that base are not always the same person.

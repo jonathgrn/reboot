@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+
+body {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: 'DM Sans', sans-serif;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Masthead */
+body::before {
+  content: "REBOOT";
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: #C1121F;
+  border-bottom: 2px solid #C1121F;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Title */
+h1.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtitle */
+p.subtitle {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #555555;
+  border-left: 3px solid #C1121F;
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Author and date */
+p.author, p.date {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #888888;
+}
+
+/* Section headers */
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  border-bottom: 1px solid #C1121F;
+  padding-bottom: 0.3rem;
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #C1121F;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Body text */
+p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #1a1a1a;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 2rem 0;
+}
+
+thead tr {
+  background-color: #C1121F;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+tbody td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  color: #1a1a1a;
+}
+
+/* Pull quote */
+blockquote {
+  border-left: 4px solid #C1121F;
+  margin: 2rem 0;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #C1121F;
+  font-family: 'DM Serif Display', serif;
+}
+
+/* TOC */
+#TOC {
+  border-left: 3px solid #C1121F;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+#TOC a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+#TOC a:hover {
+  color: #C1121F;
+}

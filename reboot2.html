@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jonathan Hagiarian">
+<meta name="dcterms.date" content="2026-06-26">
+
+<title>Progressive Momentum?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="reboot2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="reboot2_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="reboot2_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="reboot2_files/libs/quarto-html/popper.min.js"></script>
+<script src="reboot2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="reboot2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="reboot2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="reboot2_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="reboot2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="reboot2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="reboot2_files/libs/bootstrap/bootstrap-d1d49a980c7199b4ad226d4b71a124b1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#results" id="toc-results" class="nav-link active" data-scroll-target="#results">Results</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Progressive Momentum?</h1>
+<p class="subtitle lead">In their own districts, progressive House Democrats consistently underperformed the Democrats running above them in 2024.</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jonathan Hagiarian </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>One of the the most persistent claims in progressive, DSA-adjacent political circles is that left-wing candidates are electoral assets; that their energy, their bases and their brand drive turnout and ticket-splitting in ways that exceed what their districts’ pre-existing partisanship would predict. The argument has been made repeatedly since 2018, when the “Squad” arrived in Congress, and has been made recurrently since then, especially as the Democratic Party was left reeling in the wake of the 2024 election. Recently, after several DSA candidates won primaries in New York, it has once more re-emerged.</p>
+<p>There is no way to accurately measure that claim — in both ways. But there are ways to quantify it. The 2024 general election data is worth examining. Using precinct-level results aggregated at the congressional district level, it is possible to compare how progressive House members performed against the Democratic candidates running above them on the same ballot; candidates who faced the same electorate, on the same day, under the same conditions. And crucially, it is possible to run the same analysis on a matched sample of establishment-affiliated Democrats, producing a direct comparison between the two groups. The findings are uncomfortable for the progressive electoral thesis: in five of six districts examined, the progressive House member was the weakest Democratic performer on the ballot. In the establishment Democrat control group, every single member outran their presidential baseline.</p>
+<p>First, a word on data and methodology. This analysis examines whether prominent progressive House Democrats generated meaningful electoral advantages in their own districts in the 2024 general election. Specifically, it analyzes whether they outperformed the Democratic candidates running above them on the same ballot. This matters at a time where the claim that left-wing candidates drive exceptional turnout and ticket-splitting in their districts seems to be gaining momentum.</p>
+<p>Two groups of six House Democrats were selected for analysis. The first comprises members affiliated with or adjacent to the Squad and anti-establishment wing of the party: Alexandria Ocasio-Cortez (NY-14), Greg Casar (TX-35), Mark Pocan (WI-02), Ro Khanna (CA-17), Pramila Jayapal (WA-07) and Ilhan Omar (MN-05). Selection was based on prominence within the progressive wing of the Democratic Party, especially proximity to the so-called Squad and the DSA, and availability of precinct-level data.</p>
+<p>The second comprises establishment Democrats in comparably safe urban or majority-minority seats with no Squad affiliation: Ritchie Torres (NY-15), Steve Cohen (TN-09), Gwen Moore (WI-04), Jim McGovern (MA-02), Lois Frankel (FL-22) and Jim Clyburn (SC-06).</p>
+<p>Precinct-level vote data was drawn from two sources: presidential and Senate results were obtained from the MIT Election Data and Science Lab’s national precinct-level general election dataset. Congressional district boundaries and precinct-level vote totals, including House, Senate and presidential results, were obtained from Redistricting Data Hub, which publishes state-level shapefiles and GeoJSON files compiled from official state election returns.</p>
+<p>Data processing and analysis was conducted in R, using the tidyverse package suite for data cleaning and aggregation, and the sf package for reading and handling geospatial shapefiles. For each state, precincts were matched to congressional districts using the CONG_DIST field present in Redistricting Data Hub files, allowing vote totals to be aggregated at the district level.</p>
+<p>Two baselines are used throughout: the presidential baseline, i.e.&nbsp;Kamala Harris’s two-party share within the district, measures underlying district partisanship independent of candidate quality. The Senate baseline, i.e., the Democratic Senate candidate’s two-party share within the district, measures how the progressive House member performed relative to the Democrat sharing the top of the ballot. Neither baseline is sufficient alone: the presidential baseline does not account for Senate candidate variation, while the Senate baseline introduces noise from differences in incumbency, name recognition and campaign strategy across states.</p>
+<p>Two members in the control group (Clyburn and Frankel) present partial Senate baseline limitations: Tim Scott ran unopposed in South Carolina in 2024, eliminating a Senate comparator for Clyburn, while FL-22’s competitive nature makes Frankel a weaker safe-seat comparison than the rest of the control group.</p>
+<p>Code was written with assistance from Claude AI, which supported the construction and debugging of R scripts for shapefile analysis, precinct filtering and vote aggregation. All analytical decisions, interpretations and conclusions are mine.</p>
+<p>Lastly, two prominent Squad members are absent from this analysis. Ayanna Pressley ran unopposed in 2024, rendering her vote share incomparable to districts with contested races. Rashida Tlaib is similarly absent as precinct-level data sufficient to isolate her congressional district was not available from Redistricting Data Hub at the time of writing. Given her prominence within the Squad, her exclusion is a limitation.</p>
+<p>The results from the first group are summarized in the following table:</p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p><strong>Squad-affiliated members:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Member</th>
+<th>District</th>
+<th>Harris %</th>
+<th>Senate %</th>
+<th>House %</th>
+<th>vs Harris</th>
+<th>vs Senate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AOC</td>
+<td>NY-14</td>
+<td>66.2%</td>
+<td>70.0% (Gillibrand)</td>
+<td>69.2%</td>
+<td>+3.0</td>
+<td>-0.8</td>
+</tr>
+<tr class="even">
+<td>Casar</td>
+<td>TX-35</td>
+<td>67.1%</td>
+<td>70.4% (Allred)</td>
+<td>67.4%</td>
+<td>+0.3</td>
+<td>-3.0</td>
+</tr>
+<tr class="odd">
+<td>Pocan</td>
+<td>WI-02</td>
+<td>70.4%</td>
+<td>71.0% (Baldwin)</td>
+<td>70.1%</td>
+<td>-0.3</td>
+<td>-0.9</td>
+</tr>
+<tr class="even">
+<td>Khanna</td>
+<td>CA-17</td>
+<td>69.8%</td>
+<td>68.4% (Schiff)</td>
+<td>67.7%</td>
+<td>-2.1</td>
+<td>-0.7</td>
+</tr>
+<tr class="odd">
+<td>Jayapal</td>
+<td>WA-07</td>
+<td>88.8%</td>
+<td>86.6% (Cantwell)</td>
+<td>84.2%</td>
+<td>-4.6</td>
+<td>-2.4</td>
+</tr>
+<tr class="even">
+<td>Omar</td>
+<td>MN-05</td>
+<td>81.8%</td>
+<td>84.6% (Klobuchar)</td>
+<td>75.2%</td>
+<td>-6.6</td>
+<td>-9.4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Establishment Democrat control group:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Member</th>
+<th>District</th>
+<th>Harris %</th>
+<th>Senate %</th>
+<th>House %</th>
+<th>vs Harris</th>
+<th>vs Senate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Torres</td>
+<td>NY-15</td>
+<td>74.4%</td>
+<td>78.0% (Gillibrand)</td>
+<td>78.4%</td>
+<td>+4.0</td>
+<td>+0.4</td>
+</tr>
+<tr class="even">
+<td>Cohen</td>
+<td>TN-09</td>
+<td>67.0%</td>
+<td>65.4% (Johnson)</td>
+<td>73.5%</td>
+<td>+6.5</td>
+<td>+8.1</td>
+</tr>
+<tr class="odd">
+<td>Moore</td>
+<td>WI-04</td>
+<td>76.2%</td>
+<td>77.2% (Baldwin)</td>
+<td>76.9%</td>
+<td>+0.7</td>
+<td>-0.3</td>
+</tr>
+<tr class="even">
+<td>McGovern</td>
+<td>MA-02</td>
+<td>62.1%</td>
+<td>58.9% (Warren)</td>
+<td>68.8%</td>
+<td>+6.7</td>
+<td>+9.9</td>
+</tr>
+<tr class="odd">
+<td>Frankel</td>
+<td>FL-22</td>
+<td>52.8%</td>
+<td>53.4% (Mucarsel-Powell)</td>
+<td>55.0%</td>
+<td>+2.2</td>
+<td>+1.6</td>
+</tr>
+<tr class="even">
+<td>Clyburn</td>
+<td>SC-06</td>
+<td>61.2%</td>
+<td>N/A</td>
+<td>61.8%</td>
+<td>+0.6</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>The results from the second group are summarized in the following table:</p>
+<p>Based on this data, every establishment Democrat in the control group outperformed the Harris presidential baseline in their district, by margins ranging from 0.6 points (Clyburn) to 6.7 points (McGovern). On the Senate baseline, four of the five members with available data ran ahead of or level with their state’s Senate candidate. In the Squad sample, five of six members ran behind or level with Harris and every single member ran behind their state’s Senate candidate.</p>
+<p>Squad-affiliated House members did not generate the electoral lift that progressive electoral theory predicts. In five of six districts, they were the weakest Democratic performer on the ballot. Sampled Establishment Democrats in comparable seats showed the opposite pattern, systematically outrunning both the presidential baseline and, in most cases, the Senate candidate above them.</p>
+<p>AOC is the only member in the sample who outran Harris and came close to matching a long-serving Senate incumbent. Her 69.2% in NY-14 exceeded Harris’s 66.2% by 3.0 points, and her 0.8-point gap behind Gillibrand is negligible. Her result suggests genuine candidate-specific electoral strength independent of district partisanship. She is the exception that defines the rule.</p>
+<p>Ilhan Omar’s result is undeniably the most dramatic. She ran 6.6 points behind Harris and 9.4 points behind Klobuchar in a district the Senate candidate carried with 84.6%. In a district this safely Democratic, a nearly 10-point gap between the Senate and House Democratic candidates is a significant finding.</p>
+<p>Casar, Pocan, Khanna and Jayapal all underperformed their Senate baselines by between 0.7 and 3.0 points and all underperformed or barely matched Harris. None generated meaningful overperformance. In particular, Khanna’s underperformance of both Harris and Schiff in a high-turnout, heavily educated Silicon Valley district is thought-provoking.</p>
+<p>The establishment Democrat numbers sharpen the Squad findings considerably. Steve Cohen ran 6.5 points ahead of Harris in TN-09. McGovern ran 6.7 points ahead of Harris in MA-02. Ritchie Torres ran 4.0 points ahead of Harris in NY-15. The contrast between Torres (+4.0) and his Bronx neighbor AOC (+3.0) is particularly striking the explicitly anti-Squad establishment Democrat outperformed his presidential baseline by more than the Squad’s strongest performer. He also outperformed AOC in the Senate baseline by a point.</p>
+<p>The findings are arguably more significant given the electoral context in which they occurred. In a cycle where Harris underperformed Biden by roughly 8 points nationally, House incumbents would typically be expected to outrun the top of the ticket; the establishment group did that; the Squad group did not. In a cycle that should have widened the gap between presidential and House Democratic performance in incumbents’ favor, Squad members largely failed to perform well enough while their establishment counterparts did so consistently.</p>
+<p>This analysis cannot establish that progressive ideology caused underperformance. It is possible that primary competitiveness, candidate-specific factors and local political dynamics explained part of the gap.</p>
+<p>What the data does establish is that the frequently made claim about progressive electoral strength is not supported by the 2024 precinct-level evidence. If anything, the evidence points in the opposite direction: in 2024, being an establishment Democrat in a safe seat appears to have been a more reliable predictor of ballot overperformance than being a Squad member.</p>
+<p>The progressive electoral thesis has always rested on a confusion: winning a safely blue seat is not the same as outperforming it. In 2024, the precinct-level data makes that distinction visible. Establishment Democrats in safe seats generated incumbency advantage; most Squad members, in the same conditions, did not.</p>
+<p>The current cycle has seen a wave of DSA-backed and anti-establishment candidates perform strongly in Democratic primaries; Mamdani, Platner, el-Sayed, the three congressional candidates in New York City. It is tempting to read primary success as evidence of broader electoral strength. The 2024 general election data is a reality check: primary electorates are small, motivated and ideologically unrepresentative of the general electorate. It is extremely well-documented that primaries often push the cursor to the extremes, across parties. Winning those primaries is not proof of crossover appeal. The members examined in this analysis were themselves primary winners, often showcased as evidence of a rising progressive electoral coalition. In November, most of them underperformed the Democrats running above them on the same ballot, in the same districts, on the same day. A candidate who electrifies a primary base and a candidate who generates votes beyond that base are not always the same person.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="reboot2_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
